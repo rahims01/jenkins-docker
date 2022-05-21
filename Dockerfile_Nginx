@@ -4,14 +4,17 @@ RUN apt-get update && apt-get install -y \
     certbot \
     python3-certbot-nginx \
     net-tools \
-    vim \
+    vim procps \
     && rm -f /etc/nginx/nginx.conf \
-    && rm -f /etc/nginx/conf.d/default.conf
+    && rm -f /etc/nginx/conf.d/default.conf \
+    && mkdir -p /var/www/html \
+    && chown -R nginx:nginx /var/www/html/
 
-COPY nginx/conf.d/default.conf /etc/nginx/conf.d/
-COPY nginx/conf.d/gzip.conf /etc/nginx/conf.d/ 
-COPY nginx/conf.d/secconfig.conf /etc/nginx/conf.d/
-COPY nginx/conf/nginx.conf /etc/nginx/
+COPY nginx/index.html /var/wwww/html/index.html
+COPY nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/conf.d/gzip.conf /etc/nginx/conf.d/gzip.conf 
+COPY nginx/conf.d/secconfig.conf /etc/nginx/conf.d/secconfig.conf
+COPY nginx/conf/nginx.conf /etc/nginx/nginx.conf
 
 #Expose Nginx Port
 EXPOSE 80
