@@ -3,6 +3,8 @@ FROM nginx:latest
 RUN apt-get update && apt-get install -y \
     certbot \
     python3-certbot-nginx \
+    net-tools \
+    vim \
     && rm -f /etc/nginx/nginx.conf \
     && rm -f /etc/nginx/conf.d/default.conf
 
