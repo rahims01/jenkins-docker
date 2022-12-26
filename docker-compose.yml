@@ -7,7 +7,7 @@ services:
       image: bitnami/nginx
       container_name: nginx
       restart: always
-      working_dir: /var/www/html
+      working_dir: /usr/share/nginx/html
       user: root
       ports:
       - 80:80
